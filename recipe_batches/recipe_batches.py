@@ -13,26 +13,28 @@ OR
 
 Else, add all the values in recipe dictionary, assign to a value such as recipe total. Add all the values in ingredient dictionary and assign to a value such as ingredient total
 Divide recipe total by ingredient total, take the integer or float value of the result. This gives the number of recipes that can be made
+
+Have a loop to check each ingredient with the value of the recipe 
 """
 
 def recipe_batches(recipe, ingredients):
-  #initialise batches made from recipe to empty array
+  # #initialise batches made from recipe to empty array
   recipe_batches = []
-
-  #get the values in recipe and ingredient
-  recipe_values = recipe.values()
-  ingredient_value = ingredients.values()
-
-  #If any of the values in ingredient dictionary is not up to the value in the recipe dictionary, return 0
-  if len(ingredient_value) < len(recipe_values):
+  
+  #compare length of recipe and ingredients
+  if (len(ingredients) < len(recipe)):
     return 0
-  else:
-  #Divide each value in recipe by the corresponding value in ingredient and print out their respective integer result
-    quantity = recipe[recipe_values] // ingredients[ingredient_value]
-    recipe_batches.append(quantity)
+
+  #loop to check each ingredient within the array
+  for ingredient in ingredients.keys():
+    if ingredients[ingredient] < recipe[ingredient]:
+      return 0
+    else:
+      # #Divide each value in recipe by the corresponding value in ingredient and print out their respective integer result
+      recipe_quantity = ingredients[ingredient] // recipe[ingredient]
+      recipe_batches.append(recipe_quantity)
 
   return min(recipe_batches)
-
 
 if __name__ == '__main__':
   # Change the entries of these dictionaries to test 
